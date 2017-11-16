@@ -2,6 +2,8 @@
 import scrapy
 
 from nga.items import NgaItem
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spider import CrawlSpider,Rule
 
 
 class NgaSpider(scrapy.Spider):
@@ -12,7 +14,6 @@ class NgaSpider(scrapy.Spider):
     start_urls = [
         url + str(offset)
     ]
-
     def parse(self, response):
         for each in response.xpath('//tr[@class="row1 topicrow"] | //tr[@class="row2 topicrow"]'):
             item = NgaItem()
